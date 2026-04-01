@@ -10,6 +10,7 @@ function RetrieveComponents()
     Jobs = exports['mythic-base']:FetchComponent('Jobs')
     Fetch = exports['mythic-base']:FetchComponent('Fetch')
     Radar = exports['mythic-base']:FetchComponent('Radar')
+    Version = exports['mythic-base']:FetchComponent('Version')
 end
 
 AddEventHandler('Core:Shared:Ready', function()
@@ -22,10 +23,12 @@ AddEventHandler('Core:Shared:Ready', function()
         'Jobs',
         'Fetch',
         'Radar',
+        'Version',
     }, function(error)
         if #error > 0 then return end -- Do something to handle if not all dependencies loaded
         RetrieveComponents()
         RegisterChatCommands()
+        Version:Check('Mythic-Framework/Mythic-VersionCheckers', GetCurrentResourceName())
     end)
 end)
 
